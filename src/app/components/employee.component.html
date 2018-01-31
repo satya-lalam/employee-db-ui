@@ -1,6 +1,26 @@
+
+
+
 <mat-card>
-  <button mat-raised-button color="accent">Add New Employee</button>
+  <form [formGroup]="employeeForm" #formDir="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="example-container"> 
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mobile" formControlName="mobile">
+        </mat-form-field> 
+      </div>
+    <button mat-raised-button color="accent" type="submit">Add New Employee</button>
+  </form>
 </mat-card>
+
 <mat-card>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
