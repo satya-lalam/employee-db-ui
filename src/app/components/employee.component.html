@@ -3,7 +3,7 @@
 
 <mat-card>
   <form [formGroup]="employeeForm" #formDir="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
-    <div class="example-container"> 
+    <div class="form-container"> 
         <mat-form-field>
           <input matInput placeholder="First Name" formControlName="firstName">
         </mat-form-field>
@@ -22,38 +22,26 @@
 </mat-card>
 
 <mat-card>
-<div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="firstname">
-      <mat-header-cell *matHeaderCellDef> Firstname </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.firstname}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="lastname">
-      <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.lastname}} </mat-cell>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="mobile">
-      <mat-header-cell *matHeaderCellDef> Mobile </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.mobile}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
+   <mat-grid-list class="mat-grid-tile-header" cols="5" rowHeight="3em">
+        <mat-grid-tile>First Name</mat-grid-tile>
+        <mat-grid-tile>Last Name</mat-grid-tile>
+        <mat-grid-tile>Email</mat-grid-tile>
+        <mat-grid-tile>Mobile</mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+      </mat-grid-list> 
+    <mat-grid-list cols="5" rowHeight="2em" *ngFor="let employee of employees">
+        <mat-grid-tile>{{employee.firstName}}</mat-grid-tile>
+        <mat-grid-tile>{{employee.lastName}}</mat-grid-tile>
+        <mat-grid-tile>{{employee.email}}</mat-grid-tile>
+        <mat-grid-tile>{{employee.mobile}}</mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-icon-button (click)="deleteEmployee(employee)">
+            <mat-icon class="form-icon">delete</mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+      
+  
 </mat-card>

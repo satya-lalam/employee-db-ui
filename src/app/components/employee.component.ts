@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,8 +11,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
-  ngOnInit() { }
+  employees: Employee[] =[];
+
+  constructor(private employeeService: EmployeeService) { 
+    
+  }
+  ngOnInit() { 
+    this.employeeService.getEmployees()
+    .subscribe(response =>{
+      Object.assign(this.employees,response); 
+    })
+  }
 
   employeeForm = new FormGroup({
     firstName: new FormControl(),
@@ -21,24 +31,28 @@ export class EmployeeComponent implements OnInit {
   })
 
   onSubmit(formValue){
-    console.log(formValue);
-    this.http.post("http://localhost:8080/persistemployee",formValue).subscribe(responsejson =>{
-      console.log(responsejson);
+    this.employeeService.persistEmployee(formValue)
+    .subscribe(response =>{
+      this.employees.splice(0,0,<Employee>response);
+      this.employeeForm.reset();
     })
   }
 
-  displayedColumns = ['firstname', 'lastname', 'email', 'mobile'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  deleteEmployee(employee){
+    this.employeeService.deleteEmployee(employee)
+    .subscribe(response => {
+      let index = this.employees.indexOf(employee);
+      this.employees.splice(index,1)
+    })
+  }
+
+
 
 }
 
-export interface Element {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Employee {
+  firstName: string;
+  lastName: number;
+  email: number;
+  mobile: string;
 }
-
-const ELEMENT_DATA: Element[] = [
-  
-];

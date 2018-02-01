@@ -8,6 +8,7 @@ import { EmployeeComponent } from './components/employee.component';
 import { MaterialModule } from './commons/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeService } from './services/employee.service';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    EmployeeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

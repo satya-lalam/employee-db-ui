@@ -31,12 +31,19 @@ body {
     flex: 1 1 auto;
   }
 
-  .example-container {
+  .form-container {
     display: flex;
     flex-direction: column;
   }
   
-  .example-container > * {
+  .form-container > * {
     width: 100%;
+  }
+
+  
+
+  .mat-grid-tile-header {
+    background: rgb(92, 0, 46);
+    color:rgb(247, 247, 247);
   }
   

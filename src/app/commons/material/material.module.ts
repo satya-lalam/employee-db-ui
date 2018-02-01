@@ -10,7 +10,10 @@ import {
   MatTableModule,
   MatDialogModule,
   MatInputModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatListModule,
+  MatGridListModule,
+  MatDividerModule
 } from '@angular/material';
 
 @NgModule({
@@ -22,7 +25,10 @@ import {
     MatCardModule,
     MatTableModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatListModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   exports: [
     MatButtonModule,
@@ -33,7 +39,10 @@ import {
     MatTableModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatListModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   declarations: []
 })
